@@ -24,18 +24,37 @@ const EditTrip = ({data}) => {
     }
     
 
-    const updatePost = (event) => {
+    const updatePost = async (event) => {
         event.preventDefault();
+        const options = {
+            method: 'PATCH',
+            header:{ 
+                'content-type': 'application/json'
+            },
+            body : JSON.stringify(post)
+        }
+
+        await fetch(`/api/trips/${id}`, options)
+
+        window.location.href = "/";
 
 
 
     }
 
 
-    const deletePost = (event) => {
+    const deletePost = async (event) => {
         event.preventDefault();
 
+        const options = {
+            method: 'DELETE',
         
+        }
+
+        await fetch(`/api/trips/${id}`, options)
+
+        window.location.href = "/";
+
     }
 
     return (

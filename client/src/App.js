@@ -23,9 +23,25 @@ const App = () => {
       const res = await fetch('/api/trips'); // returns a promise object with the response
       const data = await res.json(); // returns a promise object with the data parsed to JSON
       setTrips(data);
+      console.log(data);
+    }
+
+    const fetchDestinations = async () => {
+      try{
+        const response = await fetch('/api/destinations');
+      const data = await response.json();
+      setDestinations(data);
+
+      }catch(err){
+        console.error('⚠️ error fetching destinations', err)
+      }
+      
+
+
     }
 
     fetchTrips();
+    fetchDestinations();
 
 
   }, []);

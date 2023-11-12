@@ -24,18 +24,50 @@ const CreateDestination = () => {
 
         const addDestination = async () => {
 
+            const options = {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(destination)
+                }
+                try{
+                    const response = await fetch('/api/destinations', options)
+                    const data = await response.json()
+                    setDestination(data)
+                    console.log('🎉 destination created successfully')
+                    return data.id
+
+                }catch(err){
+                    console.error('⚠️ error creating destination', err)
+                }
+            }
  
         
-        }
-
-        const createTripDestination = async (destination_id) => {
-
-
         
+        const createTripDestination = async (destination_id) => {
+            const options = {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({trip_id: trip_id, destination_id: destination_id})
+
+            }
+            const response = await fetch ('/api/trips-destinations', options)
+            const data = await response.json()
+            return data
         }
 
+        const destination_id = await addDestination()
+        await createTripDestination(destination_id)
+        window.location.href = '/destinations'
 
     }
+
+
+
+    
 
     return (
         <div>

@@ -17,12 +17,17 @@ const TripDetails = ({data}) => {
 
         const fetchActivities = async () => {
 
+            const response = await fetch(`/api/activities/${id}`);
+            const data = await response.json();
+            setActivities(data);
+
 
         }
 
         const fetchDestinations = async () => {
-
-            
+            const response = await fetch(`/api/trips-destinations/destinations/${id}`);
+            const data = await response.json();
+            setDestinations(data);   
         }
 
 

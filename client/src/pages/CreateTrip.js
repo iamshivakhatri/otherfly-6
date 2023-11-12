@@ -15,21 +15,33 @@ const CreateTrip = () => {
         })
     }
     
-    const createPost = (event) => {
+    const createPost = async (event) => {
         event.preventDefault();
-
+         // Validate that all required fields are filled
+    if (!post.title || !post.description || !post.img_url || !post.num_days || !post.start_date || !post.end_date || !post.total_cost) {
+        alert("Please fill in all fields");
+        return;
+    }
+    
         const options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(post),
+            body: JSON.stringify(post)
         };
-
-        fetch('/api/trips', options)
-        window.location.href = "/";
-
+    
+        console.log('post:', post);
+        console.log('options:', options);
+    
+        try {
+            await fetch('/api/trips', options);
+            window.location.href = '/';
+        } catch (error) {
+            console.error('Error:', error);
         }
+    };
+    
 
 
         
@@ -58,11 +70,11 @@ const CreateTrip = () => {
                 <br/>
 
                 <label>Start Date </label><br />
-                <input type="text" id="start_date" name="start_date" value={post.start_date} onChange={handleChange}/><br />
+                <input type="date" id="start_date" name="start_date" value={post.start_date} onChange={handleChange}/><br />
                 <br/>
 
                 <label>End Date </label><br />
-                <input type="text" id="end_date" name="end_date" value={post.end_date} onChange={handleChange}/><br />
+                <input type="date" id="end_date" name="end_date" value={post.end_date} onChange={handleChange}/><br />
                 <br/>
 
                 <label>Total Cost</label><br />

@@ -20,8 +20,13 @@ const tripsData = JSON.parse(tripsFile)  //parsing json to javascript object lik
 
 //creating a function to create a table called trips
 const createTripsTable = async () => {
+
+   
     // query to create the trips table
     const createTripsTableQuery = `
+       
+       DROP TABLE IF EXISTS trips CASCADE;
+        
         CREATE TABLE IF NOT EXISTS trips (
             id serial PRIMARY KEY,
             title varchar(100) NOT NULL,
