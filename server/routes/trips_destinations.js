@@ -4,7 +4,7 @@ import TripsDestinationsController from '../controllers/trips_destinations.js'
 
 const router = express.Router()
 
-router.get('/', TripsDestinationsController.getTripsDestinations)
+//router.get('/', TripsDestinationsController.getTripsDestinations)
 router.get('/trips/:destination_id', TripsDestinationsController.getAllTrips)
 router.get('/destinations/:trip_id', TripsDestinationsController.getAllDestinations)
 router.post('/', TripsDestinationsController.createTripDestination)
