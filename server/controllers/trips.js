@@ -39,7 +39,7 @@ const createTrip = async (req, res) => {
     }
   }
 
-  const updateTrip = async (request, response) => {
+  const updateTrip = async (req, res) => {
     try {
       const { title, description, img_url, num_days, start_date, end_date, total_cost } = req.body
       const id = parseInt(req.params.id)
